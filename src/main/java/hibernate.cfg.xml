@@ -10,6 +10,27 @@
         <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="connection.password">123</property>
         <!-- DB schema will be updated if needed -->
-        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="ru.sngb.kote.domain.Filial"/>
+        <mapping class="ru.sngb.kote.domain.Person"/>
+        <mapping class="ru.sngb.kote.domain.Comment"/>
+        <mapping class="ru.sngb.kote.domain.User"/>
+        <mapping class="ru.sngb.kote.domain.Rights"/>
+        <mapping class="ru.sngb.kote.domain.Organization"/>
+        <mapping class="ru.sngb.kote.domain.Jurface"/>
+        <mapping class="ru.sngb.kote.domain.Mcc"/>
+        <mapping class="ru.sngb.kote.domain.Requisites"/>
+        <mapping class="ru.sngb.kote.domain.Device"/>
+        <mapping class="ru.sngb.kote.domain.Model"/>
+        <mapping class="ru.sngb.kote.domain.DeviceStatus"/>
+        <mapping class="ru.sngb.kote.domain.Shipment"/>
+        <mapping class="ru.sngb.kote.domain.Vendor"/>
+        <mapping class="ru.sngb.kote.domain.DeviceType"/>
+        <mapping class="ru.sngb.kote.domain.Pos"/>
+        <mapping class="ru.sngb.kote.domain.Issue"/>
+        <mapping class="ru.sngb.kote.domain.IssueType"/>
+        <mapping class="ru.sngb.kote.domain.IssueChangeStatus"/>
+        <mapping class="ru.sngb.kote.domain.IssueStatus"/>
     </session-factory>
 </hibernate-configuration>

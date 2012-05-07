@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="kote.slut" product="MySQL" version="5.1.61-0+squeeze1" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.19 ( Revision: tonci.grgin@oracle.com-20111003110438-qfydx066wsbydkbw )" uuid="b4d828e3-fed5-4299-bb0f-e8fd18ae7050" case-sensitive="true">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://192.168.0.1:3306/kote</jdbc-url>
+    <user-name>kote</user-name>
+    <user-password>df9bdf98df99</user-password>
+    <schema-pattern>kote.*</schema-pattern>
+    <default-schemas>kote.*</default-schemas>
+    <default-dialect>MySQL</default-dialect>
+    <libraries>
+      <library>
+        <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.19/mysql-connector-java-5.1.19.jar!/</url>
+      </library>
+    </libraries>
+    <table name="k00_filial" schema="" catalog="kote" type="TABLE">
+      <column name="k00_filial_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k00_filial" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k00_filial_id" />
+      <index name="k00_filial" unique="true" columns="k00_filial" />
+    </table>
+    <table name="k02_person" schema="" catalog="kote" type="TABLE">
+      <column name="k02_person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k02_first_name" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k02_last_name" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k02_middle_name" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k02_phone" sqlType="VARCHAR" length="32" precision="0" nullable="true" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k02_person_id" />
+    </table>
+    <table name="k03_comment" schema="" catalog="kote" type="TABLE">
+      <column name="k03_comment_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k03_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" />
+      <column name="k03_pk_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k03_table" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" />
+      <column name="k03_text" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="k10_login" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k03_comment_id" />
+      <foreign-key name="FK58339ECE7F605CFD" columns="k10_login" ref-table="k10_user" ref-schema="" ref-catalog="kote" ref-columns="k10_login" />
+    </table>
+    <table name="k10_user" schema="" catalog="kote" type="TABLE">
+      <column name="k10_login" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" />
+      <column name="k10_department" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="k10_enabled" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7" />
+      <column name="k10_password" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="k10_post" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="k00_filial_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k11_rights_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k02_user_person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k10_login" />
+      <foreign-key name="FKE2895B20AAF37DE4" columns="k11_rights_id" ref-table="k11_rights" ref-schema="" ref-catalog="kote" ref-columns="k11_rights_id" />
+      <foreign-key name="FKE2895B20F4035FF6" columns="k02_user_person_id" ref-table="k02_person" ref-schema="" ref-catalog="kote" ref-columns="k02_person_id" />
+      <foreign-key name="FKE2895B20FD52544" columns="k00_filial_id" ref-table="k00_filial" ref-schema="" ref-catalog="kote" ref-columns="k00_filial_id" />
+    </table>
+    <table name="k11_rights" schema="" catalog="kote" type="TABLE">
+      <column name="k11_rights_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k11_device" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" />
+      <column name="k11_issue" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" />
+      <column name="k11_organization" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" />
+      <column name="k11_user" sqlType="VARCHAR" length="3" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k11_rights_id" />
+    </table>
+    <table name="k20_organization" schema="" catalog="kote" type="TABLE">
+      <column name="k20_organization_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k20_address" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12" />
+      <column name="k20_dogovor_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" />
+      <column name="k20_dogovor_num" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" />
+      <column name="k20_enabled" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7" />
+      <column name="k20_forpost" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k20_merchant_id" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" />
+      <column name="k20_organization" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k20_tarif" sqlType="DOUBLE" length="22" precision="0" nullable="false" jdbcType="8" />
+      <column name="k20_work_days" sqlType="VARCHAR" length="7" precision="0" nullable="false" jdbcType="12" />
+      <column name="k20_work_time" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k20_vip" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7" />
+      <column name="k02_contact_person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k00_filial_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k21_jurface_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k22_mcc" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k25_requisites_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k20_organization_id" />
+      <foreign-key name="FKF74CA1C93B3A5288" columns="k22_mcc" ref-table="k22_mcc" ref-schema="" ref-catalog="kote" ref-columns="k22_mcc" />
+      <foreign-key name="FKF74CA1C92380DB27" columns="k02_contact_person_id" ref-table="k02_person" ref-schema="" ref-catalog="kote" ref-columns="k02_person_id" />
+      <foreign-key name="FKF74CA1C94C608F71" columns="k21_jurface_id" ref-table="k21_jurface" ref-schema="" ref-catalog="kote" ref-columns="k21_jurface_id" />
+      <foreign-key name="FKF74CA1C96A4A74E7" columns="k25_requisites_id" ref-table="k25_requisites" ref-schema="" ref-catalog="kote" ref-columns="k25_requisites_id" />
+      <foreign-key name="FKF74CA1C9FD52544" columns="k00_filial_id" ref-table="k00_filial" ref-schema="" ref-catalog="kote" ref-columns="k00_filial_id" />
+    </table>
+    <table name="k21_jurface" schema="" catalog="kote" type="TABLE">
+      <column name="k21_jurface_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k21_jurface" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" />
+      <column name="k21_INN" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" />
+      <column name="k02_director_person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k21_jurface_id" />
+      <foreign-key name="FK95098C0F89B91177" columns="k02_director_person_id" ref-table="k02_person" ref-schema="" ref-catalog="kote" ref-columns="k02_person_id" />
+    </table>
+    <table name="k22_mcc" schema="" catalog="kote" type="TABLE">
+      <column name="k22_mcc" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k22_description" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k22_mcc" />
+    </table>
+    <table name="k25_requisites" schema="" catalog="kote" type="TABLE">
+      <column name="k25_requisites_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k25_bank" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k25_bik" sqlType="VARCHAR" length="9" precision="0" nullable="false" jdbcType="12" />
+      <column name="k25_ks" sqlType="VARCHAR" length="19" precision="0" nullable="false" jdbcType="12" />
+      <column name="k25_rs" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k25_requisites_id" />
+    </table>
+    <table name="k30_device" schema="" catalog="kote" type="TABLE">
+      <column name="k30_device_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k30_book_cost" sqlType="DECIMAL" length="19" precision="2" nullable="false" jdbcType="3" />
+      <column name="k30_cost" sqlType="DECIMAL" length="19" precision="2" nullable="false" jdbcType="3" />
+      <column name="k30_enabled" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7" />
+      <column name="k30_guarantee" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" />
+      <column name="k30_inv" sqlType="VARCHAR" length="8" precision="0" nullable="true" jdbcType="12" />
+      <column name="k30_sn" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="k32_device_status_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k00_filial_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="k31_model_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k33_shipment_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k30_device_id" />
+      <foreign-key name="FK7067EA6DFD52544" columns="k00_filial_id" ref-table="k00_filial" ref-schema="" ref-catalog="kote" ref-columns="k00_filial_id" />
+      <foreign-key name="FK7067EA6D1275A8C4" columns="k33_shipment_id" ref-table="k33_shipment" ref-schema="" ref-catalog="kote" ref-columns="k33_shipment_id" />
+      <foreign-key name="FK7067EA6D676373DA" columns="k32_device_status_id" ref-table="k32_device_status" ref-schema="" ref-catalog="kote" ref-columns="k32_device_status_id" />
+      <foreign-key name="FK7067EA6D998A91D2" columns="k31_model_id" ref-table="k31_model" ref-schema="" ref-catalog="kote" ref-columns="k31_model_id" />
+      <index name="k30_sn" unique="true" columns="k30_sn" />
+      <index name="k30_inv" unique="true" columns="k30_inv" />
+    </table>
+    <table name="k31_model" schema="" catalog="kote" type="TABLE">
+      <column name="k31_model_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k31_enabled" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7" />
+      <column name="k31_model" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="k35_device_type_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k34_vendor_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k31_model_id" />
+      <foreign-key name="FK72D80B739C615F45" columns="k34_vendor_id" ref-table="k34_vendor" ref-schema="" ref-catalog="kote" ref-columns="k34_vendor_id" />
+      <foreign-key name="FK72D80B7351DDC077" columns="k35_device_type_id" ref-table="k35_device_type" ref-schema="" ref-catalog="kote" ref-columns="k35_device_type_id" />
+    </table>
+    <table name="k32_device_status" schema="" catalog="kote" type="TABLE">
+      <column name="k32_device_status_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k32_device_status" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k32_device_status_id" />
+    </table>
+    <table name="k33_shipment" schema="" catalog="kote" type="TABLE">
+      <column name="k33_shipment_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k33_comment" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
+      <column name="k33_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" />
+      <column name="k33_ship" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k33_shipment_id" />
+    </table>
+    <table name="k34_vendor" schema="" catalog="kote" type="TABLE">
+      <column name="k34_vendor_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k34_vendor" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k34_vendor_id" />
+      <index name="k34_vendor" unique="true" columns="k34_vendor" />
+    </table>
+    <table name="k35_device_type" schema="" catalog="kote" type="TABLE">
+      <column name="k35_device_type_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k35_device_type" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k35_device_type_id" />
+      <index name="k35_device_type" unique="true" columns="k35_device_type" />
+    </table>
+    <table name="k36_model_relation" schema="" catalog="kote" type="TABLE">
+      <column name="k36_parent_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k36_daughter_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k36_parent_id,k36_daughter_id" />
+      <foreign-key name="FK7134A6A35FE9536C" columns="k36_daughter_id" ref-table="k31_model" ref-schema="" ref-catalog="kote" ref-columns="k31_model_id" />
+      <foreign-key name="FK7134A6A3DA39CE4A" columns="k36_parent_id" ref-table="k31_model" ref-schema="" ref-catalog="kote" ref-columns="k31_model_id" />
+    </table>
+    <table name="k37_device_relation" schema="" catalog="kote" type="TABLE">
+      <column name="k37_parent_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k37_daughter_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k37_parent_id,k37_daughter_id" />
+      <foreign-key name="FK5122BD95D7CB12D6" columns="k37_daughter_id" ref-table="k30_device" ref-schema="" ref-catalog="kote" ref-columns="k30_device_id" />
+      <foreign-key name="FK5122BD95F87D39F4" columns="k37_parent_id" ref-table="k30_device" ref-schema="" ref-catalog="kote" ref-columns="k30_device_id" />
+    </table>
+    <table name="k38_pos" schema="" catalog="kote" type="TABLE">
+      <column name="k38_terminal_id" sqlType="VARCHAR" length="8" precision="0" nullable="false" jdbcType="12" />
+      <column name="k38_address" sqlType="VARCHAR" length="127" precision="0" nullable="false" jdbcType="12" />
+      <column name="k30_device_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k20_organization_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="k38_terminal_id" />
+      <foreign-key name="FK7683F1A56C565181" columns="k30_device_id" ref-table="k30_device" ref-schema="" ref-catalog="kote" ref-columns="k30_device_id" />
+      <foreign-key name="FK7683F1A5E2562502" columns="k20_organization_id" ref-table="k20_organization" ref-schema="" ref-catalog="kote" ref-columns="k20_organization_id" />
+    </table>
+    <table name="k40_issue" schema="" catalog="kote" type="TABLE">
+      <column name="k40_issue_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k40_issue_name" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <column name="k40_issue_summary" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="k41_issue_type_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="k38_terminal_id" sqlType="VARCHAR" length="8" precision="0" nullable="true" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k40_issue_id" />
+      <foreign-key name="FKA59CAAC1E9DB4025" columns="k38_terminal_id" ref-table="k38_pos" ref-schema="" ref-catalog="kote" ref-columns="k38_terminal_id" />
+      <foreign-key name="FKA59CAAC1A98E3AF8" columns="k41_issue_type_id" ref-table="k41_issue_type" ref-schema="" ref-catalog="kote" ref-columns="k41_issue_type_id" />
+    </table>
+    <table name="k41_issue_type" schema="" catalog="kote" type="TABLE">
+      <column name="k41_issue_type_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k41_issue_type" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k41_issue_type_id" />
+    </table>
+    <table name="k42_issue_change_status" schema="" catalog="kote" type="TABLE">
+      <column name="k42_issue_change_status_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k42_issue_change_status_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91" />
+      <column name="k40_issue_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k43_issue_status_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k10_login" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k42_issue_change_status_id" />
+      <foreign-key name="FKD0C035657F605CFD" columns="k10_login" ref-table="k10_user" ref-schema="" ref-catalog="kote" ref-columns="k10_login" />
+      <foreign-key name="FKD0C0356583E8B47A" columns="k43_issue_status_id" ref-table="k43_issue_status" ref-schema="" ref-catalog="kote" ref-columns="k43_issue_status_id" />
+      <foreign-key name="FKD0C03565887AB574" columns="k40_issue_id" ref-table="k40_issue" ref-schema="" ref-catalog="kote" ref-columns="k40_issue_id" />
+    </table>
+    <table name="k43_issue_status" schema="" catalog="kote" type="TABLE">
+      <column name="k43_issue_status_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="k43_issue_status" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="k43_issue_status_id" />
+    </table>
+  </data-source>
+</component>

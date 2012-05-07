@@ -5,9 +5,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Some class.
+ * Some useful security utils. Such as:
+ * creating object md5.
  * <p/>
- * User: Viacheslav
  * Date: 08.05.12
  *
  * @author Tsykin V.A. (aka nektoDev), ts.slawa@gmail.com
@@ -16,13 +16,13 @@ import java.security.NoSuchAlgorithmException;
 public class security {
     public String takeMd5(Object o) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         MessageDigest md ;
-        StringBuffer  md5 = new StringBuffer();
+        StringBuilder md5 = new StringBuilder();
         md = MessageDigest.getInstance("md5");
         md.reset();
         md.update(o.toString().getBytes());
         byte messageDigest[] = md.digest();
-        for (int i = 0; i < messageDigest.length; i++) {
-            md5.append(Integer.toHexString(0xFF & messageDigest[i]));
+        for (byte aMessageDigest : messageDigest) {
+            md5.append(Integer.toHexString(0xFF & aMessageDigest));
         }
         return md5.toString();
     }

@@ -1,6 +1,10 @@
 package ru.sngb.kote.domain;
 
+import ru.sngb.kote.util.Security;
+
 import javax.persistence.*;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
 /**
@@ -18,7 +22,7 @@ public class User {
     private String Login;
 
     @Basic
-    @Column(name = "k10_password", nullable = false, insertable = true, updatable = true)
+    @Column(name = "k10_password", nullable = false, insertable = true, updatable = true, length = 32)
     private String Password;
 
     @Basic
@@ -56,9 +60,9 @@ public class User {
         this.Enabled = true;
     }
 
-    public User(String Login, String Password, String Department, String Post, Person UserPerson, Filial Filial, Rights Rights) {
+    public User(String Login, String Password, String Department, String Post, Person UserPerson, Filial Filial, Rights Rights) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.Login = Login;
-        this.Password = Password;
+        this.Password = Security.takeMd5(Password);
         this.Department = Department;
         this.Post = Post;
         this.UserPerson = UserPerson;
@@ -81,8 +85,8 @@ public class User {
         return Password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String Password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        this.Password = Security.takeMd5(Password);
     }
 
     public String getDepartment() {

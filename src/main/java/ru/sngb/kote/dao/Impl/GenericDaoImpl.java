@@ -20,7 +20,7 @@ import java.util.Collection;
 public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T, ID> {
 
     protected Session getSession() {
-        return HibernateUtil.getSessionFactory().openSession();
+        return HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
     @Override

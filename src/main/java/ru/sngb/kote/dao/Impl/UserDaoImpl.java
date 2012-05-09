@@ -17,15 +17,22 @@ import java.util.Collection;
  * @author Tsykin V.A. (aka nektoDev), ts.slawa@gmail.com
  * @version 0.1
  */
-public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDao {
+public class UserDaoImpl extends GenericDaoImpl<User, String> implements UserDao {
     @Override
     public Collection<User> getUsersByDepartment(String department) {
         Session hibernateSession = this.getSession();
         Collection<User> userCollection = null;
         Criteria criteria = hibernateSession.createCriteria(User.class)
-                .add(Restrictions.eq("k10_department", department));
+                .add(Restrictions.eq("Department", department));
         userCollection = (Collection<User>) criteria.list();
         return userCollection;
+    }
+
+    @Override
+    public void delete(User user) {
+        Session session = super.getSession();
+        user.setEnabled(false);
+        session.update(user);
     }
 }
 

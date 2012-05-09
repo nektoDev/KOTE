@@ -7,66 +7,129 @@ import ru.sngb.kote.domain.User;
 import ru.sngb.kote.service.UserService;
 import ru.sngb.kote.util.HibernateUtil;
 
+import java.util.Collection;
+
+import static ru.sngb.kote.util.Security.takeMd5;
+
 /**
- * Some class.
+ * User service-layer class.
  * <p/>
  * User: Viacheslav
  * Date: 09.05.12
  *
  * @author Tsykin V.A. (aka nektoDev), ts.slawa@gmail.com
- * @version 0.1
+ * @version 0.2
  */
 public class UserServiceImpl implements UserService {
     private UserDao userDao = new UserDaoImpl();
 
     @Override
     public void addUser(User user) {
-        System.out.println("Start session");
-        Session hibernateSession = HibernateUtil.getSessionFactory().openSession();
+        Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
-            System.out.println("begin transaction");
-            hibernateSession.getTransaction().begin();
-            System.out.println("saving");
+            hibernateSession.beginTransaction();
             userDao.save(user);
-            System.out.println("commiting");
             hibernateSession.getTransaction().commit();
-            System.out.println("Done");
-            hibernateSession.flush();
         } catch (Exception ex) {
             System.out.println("Can't add user");
             ex.printStackTrace();
-
             hibernateSession.getTransaction().rollback();
         }
     }
 
     @Override
     public void deleteUser(User user) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            hibernateSession.beginTransaction();
+            userDao.delete(user);
+            hibernateSession.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println("Can't delete user");
+            ex.printStackTrace();
+            hibernateSession.getTransaction().rollback();
+        }
     }
 
     @Override
-    public void getAllUsers() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public Collection<User> getAllUsers() {
+        Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            hibernateSession.beginTransaction();
+            Collection<User> users = userDao.getAll(User.class);
+            hibernateSession.getTransaction().commit();
+            return users;
+        } catch (Exception ex) {
+            System.out.println("Can't getting all users");
+            ex.printStackTrace();
+            hibernateSession.getTransaction().rollback();
+            return null;
+        }
+
     }
 
     @Override
     public void updateUser(User user) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            hibernateSession.beginTransaction();
+            userDao.update(user);
+            hibernateSession.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println("Can't getting all users");
+            ex.printStackTrace();
+            hibernateSession.getTransaction().rollback();
+        }
     }
 
     @Override
-    public void getUserById() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public User getUserById(String id) {
+        Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            hibernateSession.beginTransaction();
+            User user = userDao.getById(User.class, id);
+            hibernateSession.getTransaction().commit();
+            return user;
+        } catch (Exception ex) {
+            System.out.println("Can't getting user with id=" + id);
+            ex.printStackTrace();
+            hibernateSession.getTransaction().rollback();
+            return null;
+        }
     }
 
     @Override
-    public void getUsersByDepartment() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public Collection<User> getUsersByDepartment(String department) {
+        Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            hibernateSession.beginTransaction();
+            Collection<User> usersByDepartment = userDao.getUsersByDepartment(department);
+            hibernateSession.getTransaction().commit();
+            return usersByDepartment;
+        } catch (Exception ex) {
+            System.out.println("Can't getting all users from " + department);
+            ex.printStackTrace();
+            hibernateSession.getTransaction().rollback();
+            return null;
+        }
     }
 
     @Override
-    public void autorization() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public boolean autorization(String login, String password) {
+        Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
+        User user = null;
+        try {
+            hibernateSession.beginTransaction();
+            user = userDao.getById(User.class, login);
+            hibernateSession.getTransaction().commit();
+            if (user != null) {
+                return user.getPassword().equals(takeMd5(password));
+            } else return false;
+        } catch (Exception ex) {
+            System.out.println("Can't authorize you");
+            ex.printStackTrace();
+            hibernateSession.getTransaction().rollback();
+            return false;
+        }
     }
 }

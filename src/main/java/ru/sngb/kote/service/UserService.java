@@ -2,6 +2,8 @@ package ru.sngb.kote.service;
 
 import ru.sngb.kote.domain.User;
 
+import java.util.Collection;
+
 /**
  * UserServivice - user business layer class.
  * <p/>
@@ -15,13 +17,13 @@ public interface UserService {
 
     void deleteUser(User user);
 
-    void getAllUsers();
-
     void updateUser(User user);
 
-    void getUserById();
+    Collection<User> getAllUsers();
 
-    void getUsersByDepartment();
+    User getUserById(String id);
 
-    void autorization();
+    Collection<User> getUsersByDepartment(String department);
+
+    boolean autorization(String login, String password);
 }

@@ -10,7 +10,8 @@
         <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="connection.password">123</property>
         <!-- DB schema will be updated if needed -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="current_session_context_class">thread</property>
 
         <mapping class="ru.sngb.kote.domain.Filial"/>
         <mapping class="ru.sngb.kote.domain.Person"/>

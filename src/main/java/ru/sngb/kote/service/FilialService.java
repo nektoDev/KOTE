@@ -13,6 +13,7 @@ import java.util.Collection;
  * @version 0.1
  */
 public interface FilialService {
+    //TODO add genericservice
     void addFilial(Filial filial);
 
     void deleteFilial(Filial filial);

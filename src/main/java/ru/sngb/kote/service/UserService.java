@@ -13,6 +13,7 @@ import java.util.Collection;
  * @version 0.1
  */
 public interface UserService {
+    //todo add genericservice
     void addUser(User user);
 
     void deleteUser(User user);

@@ -1,9 +1,7 @@
 import org.hibernate.Session;
 import ru.sngb.kote.domain.Filial;
 import ru.sngb.kote.domain.Person;
-import ru.sngb.kote.domain.Rights;
-import ru.sngb.kote.domain.User;
-import ru.sngb.kote.service.Impl.UserServiceImpl;
+import ru.sngb.kote.service.Impl.PersonServiceImpl;
 
 /**
  * Main class for testing hibernate.
@@ -18,7 +16,7 @@ public class Main {
     public static void main(final String[] args) throws Exception {
         Session session = null;
         try {
-            Filial filial = new Filial("1");
+            /*Filial filial = new Filial("1");
             User user1 = new User("admin", "admin", "1", "1", new Person("1", "1", "1"), filial, new Rights("1", "1", "1", "1"));
             User user2 = new User("admin2", "admin2", "12", "12", new Person("12", "12", "12"), new Filial("11112"), new Rights("21", "21", "21", "21"));
             UserServiceImpl userService = new UserServiceImpl();
@@ -36,7 +34,15 @@ public class Main {
             System.out.println("updating 1");
             user1.setDepartment("12");
             userService.updateUser(user1);
-            System.out.println("getting by department" + userService.getUsersByDepartment("12"));
+            System.out.println("getting by department" + userService.getUsersByDepartment("12"));*/
+
+            Person person = new Person("tsykin", "viacheslav", "alekseevich");
+            PersonServiceImpl personService = new PersonServiceImpl();
+            personService.save(person);
+            System.out.println(personService.getAll());
+            person.setPhone("237582");
+            personService.update(person);
+            System.out.println(personService.getById(1));
 
 
             Filial surgut = new Filial("Surgut");

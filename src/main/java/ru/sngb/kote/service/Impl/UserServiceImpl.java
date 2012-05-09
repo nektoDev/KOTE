@@ -65,7 +65,6 @@ public class UserServiceImpl implements UserService {
             hibernateSession.getTransaction().rollback();
             return null;
         }
-
     }
 
     @Override

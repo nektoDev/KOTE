@@ -42,7 +42,7 @@
       <column name="k10_login" sqlType="VARCHAR" length="16" precision="0" nullable="false" jdbcType="12" />
       <column name="k10_department" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="k10_enabled" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7" />
-      <column name="k10_password" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
+      <column name="k10_password" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" />
       <column name="k10_post" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" />
       <column name="k00_filial_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="k11_rights_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
@@ -76,10 +76,10 @@
       <column name="k02_contact_person_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="k00_filial_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="k21_jurface_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
-      <column name="k22_mcc" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <column name="k25_requisites_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="k22_mcc" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PRIMARY" columns="k20_organization_id" />
-      <foreign-key name="FKF74CA1C93B3A5288" columns="k22_mcc" ref-table="k22_mcc" ref-schema="" ref-catalog="kote" ref-columns="k22_mcc" />
+      <foreign-key name="FKF74CA1C93B3A5688" columns="k22_mcc" ref-table="k22_mcc" ref-schema="" ref-catalog="kote" ref-columns="k22_mcc" />
       <foreign-key name="FKF74CA1C92380DB27" columns="k02_contact_person_id" ref-table="k02_person" ref-schema="" ref-catalog="kote" ref-columns="k02_person_id" />
       <foreign-key name="FKF74CA1C94C608F71" columns="k21_jurface_id" ref-table="k21_jurface" ref-schema="" ref-catalog="kote" ref-columns="k21_jurface_id" />
       <foreign-key name="FKF74CA1C96A4A74E7" columns="k25_requisites_id" ref-table="k25_requisites" ref-schema="" ref-catalog="kote" ref-columns="k25_requisites_id" />
